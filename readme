@@ -1,0 +1,22 @@
+In these Project I am gonna build a CI/CD (Continous Integration and Continous Delivery) Pipeline using Jenkins and AWS.
+The website here is simple Registration form in Node Js hosted on AWS EC2 instance and storing it data in AWS DocumentDB.
+
+Tools using for different stage of Development :--
+    1. PLAN - Github
+    2. CODE - Github
+    3. BUILD - Maven
+    4. DEPLOY - AWS (EC2 and DocumentDB)
+
+To integrate all these stages I am here using JENKINS to build the pipeline.
+
+ARCHITECTURE OF THE PROJECT : -
+
+![alt text](https://github.com/KelviManavadaria-17/CI-CD-Pipeline-with-Jenkins-and-AWS/blob/master/architecture.jpg?raw=true)
+
+Steps : 
+
+    1. Created a website in Node Js with a registeration form.
+    2. Connect DynamoDB with it .
+    3. Host website on EC2.
+    4. Create Jenkins Pipeline
+    5. Finally all is working
