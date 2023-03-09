@@ -11,7 +11,7 @@ To integrate all these stages I am here using JENKINS to build the pipeline.
 
 ARCHITECTURE OF THE PROJECT : -
 
-![alt text](https://github.com/KelviManavadaria-17/CI-CD-Pipeline-with-Jenkins-and-AWS/blob/master/architecture.jpg?raw=true)
+![alt text](https://github.com/KelviManavadaria-17/CI-CD-Pipeline-with-Jenkins-and-AWS/blob/master/architecture.png?raw=true)
 
 Steps : 
 
