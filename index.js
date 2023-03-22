@@ -9,8 +9,8 @@ const { DynamoDB } = require("@aws-sdk/client-dynamodb");
 const dynamodb = new DynamoDB({
   region: "ap-south-1",
   credentials: {
-    accessKeyId: "your Access Key",
-    secretAccessKey: "Your Secret key",
+    accessKeyId: "",
+    secretAccessKey: "",
   },
 });
 
@@ -77,9 +77,7 @@ app.post("/auth_login", (req, res) => {
 });
 
 app.post("/auth_register", (req, res) => {
-  //post function to authorize registration
   let register_data = {
-    //set register_data variable to have name, email, and password property
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
@@ -92,15 +90,33 @@ app.post("/auth_register", (req, res) => {
       password: { S: register_data.password },
     },
   };
-  dynamodb.putItem(params, function (err, data) {
+  const checkParams = {
+    TableName: "users",
+    Key: {
+      email: { S: register_data.email },
+    },
+  };
+  dynamodb.getItem(checkParams, function (err, data) {
     if (err) {
-      console.log("Error adding item to table:", err);
+      console.log("Error checking if email already exists:", err);
+    } else if (data.Item) {
+      console.log("Email already registered:", data);
+      res.render("register_error.ejs", {
+        message: "This email address is already registered.",
+      });
     } else {
-      console.log("Item added to table:", data);
+      dynamodb.putItem(params, function (err, data) {
+        if (err) {
+          console.log("Error adding item to table:", err);
+        } else {
+          console.log("Item added to table:", data);
+          res.render("register_success.ejs");
+        }
+      });
     }
-    res.render("register_success.ejs");
   });
 });
+
 
 app.get("*", (req, res) => {
   res.send("404 - Page not found"); //set other unknown pages as 404

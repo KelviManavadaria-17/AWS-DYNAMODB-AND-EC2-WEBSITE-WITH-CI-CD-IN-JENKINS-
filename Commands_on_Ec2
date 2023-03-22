@@ -1,0 +1,8 @@
+curl -o- https://raw.githubusercontent.com/nvm-sh/n
+. ~/.nvm/nvm.sh
+ nvm install 16
+sudo yum update
+sudo yum install git
+git --version
+curl https://localhost
+sudo yum install httpd
